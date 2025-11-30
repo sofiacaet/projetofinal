@@ -42,7 +42,11 @@ class PacienteController extends Controller
         if(isset($dieta)) {
             $paciente = new Paciente();
             $paciente->nome = mb_strtoupper($request->nome, 'UTF-8');
-            $paciente->ano = $request->ano;
+            $paciente->email = $request->email;
+            $paciente->telefone = $request->telefone;
+            $paciente->altura = $request->altura;
+            $paciente->idade = $request->idade;
+            $paciente->peso_atual = $request->peso_atual;
             $paciente->dieta()->associate($dieta);
             $paciente->save();
 
@@ -94,7 +98,11 @@ class PacienteController extends Controller
 
         if(isset($dieta) && isset($paciente)) {
             $paciente->nome = mb_strtoupper($request->nome, 'UTF-8');
-            $paciente->ano = $request->ano;
+            $paciente->email = $request->email;
+            $paciente->telefone = $request->telefone;
+            $paciente->altura = $request->altura;
+            $paciente->idade = $request->idade;
+            $paciente->peso_atual = $request->peso_atual;
             $paciente->dieta()->associate($dieta);
 
             if($request->hasFile('foto')) {

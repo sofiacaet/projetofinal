@@ -14,11 +14,17 @@ return new class extends Migration
         Schema::create('pacientes', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
-            $table->integer('ano');
+            $table->string('email')->unique();//
+            $table->string('telefone');//
+            $table->decimal('altura', 4, 2);//4 digitos (total), 2 deles dps da virgula
+            $table->integer('idade');//
+            $table->decimal('peso_atual', 5, 2);//
+
             // linhas adicionadas
             $table->string('foto')->nullable();
             $table->unsignedBigInteger('dieta_id');
             $table->foreign('dieta_id')->references('id')->on('dietas');
+
             $table->softDeletes();
             $table->timestamps();
         });

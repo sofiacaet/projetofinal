@@ -12,8 +12,12 @@
     <table class="table align-middle caption-top table-striped">
         <thead>
             <th class="text-secondary">NOME</th>
-            <th class="d-none d-md-table-cell text-secondary">TURMA</th>
-            <th class="d-none d-md-table-cell text-secondary">ANO</th>
+            <th class="d-none d-md-table-cell text-secondary">DIETA</th>
+            <th class="d-none d-md-table-cell text-secondary">EMAIL</th>
+            <th class="d-none d-md-table-cell text-secondary">TELEFONE</th>
+            <th class="d-none d-md-table-cell text-secondary">ALTURA</th>
+            <th class="d-none d-md-table-cell text-secondary">IDADE</th>
+            <th class="d-none d-md-table-cell text-secondary">PESO ATUAL</th>
             <th class="text-secondary">AÇÕES</th>
         </thead>
         <tbody>
@@ -21,7 +25,11 @@
                 <tr>
                     <td>{{ $item->nome }}</td>
                     <td class="d-none d-md-table-cell">{{ $item->dieta->nome }}</td>
-                    <td class="d-none d-md-table-cell">{{ $item->ano }}</td>
+                    <td class="d-none d-md-table-cell">{{ $item->email }}</td>
+                    <td class="d-none d-md-table-cell">{{ $item->telefone }}</td>
+                    <td class="d-none d-md-table-cell">{{ $item->altura }}</td>
+                    <td class="d-none d-md-table-cell">{{ $item->idade }}</td>
+                    <td class="d-none d-md-table-cell">{{ $item->peso_atual }}</td>
                     <td>
                         <a href="{{ asset('storage/'.$item->foto) }}" target="_blank" class="btn btn-outline-dark">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#000" class="bi bi-person-bounding-box" viewBox="0 0 16 16">

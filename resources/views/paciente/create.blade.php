@@ -45,20 +45,84 @@
                 </div>
             </div>
         </div>
+
         <div class="row">
-            <div class="col" >
+            <div class="col">
+                <div class="form-floating mb-3">
+                    <input
+                        type="email"
+                        class="form-control"
+                        name="email"
+                        placeholder="E-mail"
+                        value="{{ old('email') }}"
+                    />
+                    <label for="email">E-mail</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="form-floating mb-3">
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="telefone"
+                        placeholder="Telefone"
+                        value="{{ old('telefone') }}"
+                    />
+                    <label for="telefone">Telefone</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="form-floating mb-3">
+                    <input
+                        type="number"
+                        step="0.01"
+                        class="form-control"
+                        name="altura"
+                        placeholder="Altura (ex: 1.75)"
+                        value="{{ old('altura') }}"
+                    />
+                    <label for="altura">Altura</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
                 <div class="form-floating mb-3">
                     <input
                         type="number"
                         class="form-control"
-                        name="ano"
-                        placeholder="Ano"
-                        value="{{old('ano')}}"
+                        name="idade"
+                        placeholder="Idade"
+                        value="{{ old('idade') }}"
                     />
-                    <label for="ano">Ano</label>
+                    <label for="idade">Idade</label>
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="form-floating mb-3">
+                    <input
+                        type="number"
+                        step="0.01"
+                        class="form-control"
+                        name="peso_atual"
+                        placeholder="Peso Atual"
+                        value="{{ old('peso_atual') }}"
+                    />
+                    <label for="peso_atual">Peso Atual</label>
+                </div>
+            </div>
+        </div>
+
 
         <div class="row mb-5">
             <div class="col">

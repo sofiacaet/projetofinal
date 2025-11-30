@@ -163,11 +163,12 @@
                     <td>
                         <table class="inner-table">
                             <tr><td class="label table-label">NOME:</td><td style="width: 305px;">{{ $paciente->nome }}</td></tr>
-                            <tr><td class="label">CURSO:</td><td>{{ $paciente->dieta->nome }}</td></tr>
-                            <tr><td class="label">ANO:</td><td>{{ $paciente->ano }}</td></tr>
-                            <tr><td class="label">NATURALIDADE:</td><td>  </td></tr>
-                            <tr><td class="label">MÃE:</td><td>  </td></tr>
-                            <tr><td class="label">PAI:</td><td>  </td></tr>
+                            <tr><td class="label">TIPO DIETA:</td><td>{{ $paciente->dieta->nome }}</td></tr>
+                            <tr><td class="label">EMAIL:</td><td>{{ $paciente->email }}</td></tr>
+                            <tr><td class="label">TELEFONE:</td><td>{{ $paciente->telefone }}</td></tr>
+                            <tr><td class="label">ALTURA:</td><td>{{ $paciente->altura }}</td></tr>
+                            <tr><td class="label">IDADE:</td><td>{{ $paciente->idade }}</td></tr>
+                            <tr><td class="label">PESO ATUAL:</td><td>{{ $paciente->peso_atual }}</td></tr>
                         </table>
                     </td>
                 </tr>
