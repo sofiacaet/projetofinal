@@ -32,13 +32,13 @@
         <div class="col">
             <div class="form-floating mb-3">
                 <input
-                    type="number"
+                    type="text"
                     class="form-control"
-                    name="duracao"
-                    placeholder="Duração (anos)"
-                    value="{{ $dieta->duracao }}"
+                    name="objetivo"
+                    placeholder="Objetivo"
+                    value="{{ $dieta->objetivo }}"
                 />
-                <label for="duracao">Duração (anos)</label>
+                <label for="objetivo">Objetivo</label>
             </div>
         </div>
     </div>

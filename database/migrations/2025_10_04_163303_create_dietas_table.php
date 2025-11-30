@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('dietas', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
-            $table->integer('duracao');
+            $table->string('objetivo'); //duração
             $table->softDeletes();
             $table->timestamps();
         });

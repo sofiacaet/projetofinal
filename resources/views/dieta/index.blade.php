@@ -13,7 +13,7 @@
 <table class="table align-middle caption-top table-striped">
     <thead>
         <th class="text-secondary">NOME</th>
-        <th class="d-none d-md-table-cell text-secondary">DURAÇÃO (anos)</th>
+        <th class="d-none d-md-table-cell text-secondary">OBJETIVO</th>
         <th class="text-secondary">AÇÕES</th>
     </thead>
 
@@ -21,7 +21,7 @@
         @foreach ($dietas as $item)
             <tr>
                 <td>{{ $item->nome }}</td>
-                <td class="d-none d-md-table-cell">{{ $item->duracao }}</td>
+                <td class="d-none d-md-table-cell">{{ $item->objetivo }}</td>
 
                 <td>
                     <a href="{{route('dieta.edit', $item->id)}}" class="btn btn-outline-success">

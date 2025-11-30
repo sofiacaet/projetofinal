@@ -14,8 +14,8 @@ class CDietaSeeder extends Seeder
     public function run(): void
     {
         $data = [
-            ["nome" => "TÉCNICO EM INFORMÁTICA", "duracao" => 4],
-            ["nome" => "TECNÓLOGO EM DESENVOLVIMENTO", "duracao" => 3],
+            ["nome" => "CUTTING", "objetivo" => "perder gordura"],
+            ["nome" => "BULKING", "objetivo" => "ganhar massa muscular"],
         ];
         DB::table('dietas')->insert($data);
     }

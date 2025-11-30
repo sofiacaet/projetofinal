@@ -50,7 +50,7 @@
 <body>
 
     <div class="texto-marca-dagua"> IFPR - PARANAGUÁ </div>
-    <div class="texto-restrito-cima"> DOCUMENTO GERADO PELO SISTEMA DIETA </div>
+    <div class="texto-restrito-cima"> DOCUMENTO GERADO PELO SISTEMA NUTRICIONAL </div>
 
     <hr>
 
@@ -79,20 +79,20 @@
         <thead>
             <tr>
                 <th>Nome da Dieta</th>
-                <th>Duracao</th>
+                <th>Objetivo</th>
             </tr>
         </thead>
         <tbody>
             @foreach($dietas as $dieta)
                 <tr>
                     <td>{{ $dieta->nome }}</td>
-                    <td>{{ $dieta->duracao }}</td>
+                    <td>{{ $dieta->objetivo }}</td>
                 </tr>
             @endforeach
         </tbody>
     </table>
 
-    <div class="texto-restrito-baixo"> DOCUMENTO GERADO PELO SISTEMA DIETA </div>
+    <div class="texto-restrito-baixo"> DOCUMENTO GERADO PELO SISTEMA NUTRICIONAL </div>
 
 </body>
 </html>

@@ -37,7 +37,7 @@ class DietaController extends Controller
     {
         $dieta = new Dieta();
         $dieta->nome = mb_strtoupper($request->nome, 'UTF-8');
-        $dieta->duracao = $request->duracao;
+        $dieta->objetivo = $request->objetivo;
         $dieta->save();
 
         return redirect()->route('dieta.index');
@@ -65,7 +65,7 @@ class DietaController extends Controller
 
         if(isset($dieta)) {
             $dieta->nome = mb_strtoupper($request->nome, 'UTF-8');
-            $dieta->duracao = $request->duracao;
+            $dieta->objetivo = $request->objetivo;
             $dieta->save();
         }
 
