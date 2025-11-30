@@ -10,7 +10,7 @@
      <style>
             .nav-pills .nav-link.active {
                 color: #FFF !important;
-                background-color: #6c757d !important;
+                background-color: #6c7c7dff !important;
             }
             .nav-pills .nav-link {
                 color: #6c757d !important;

@@ -1,24 +1,146 @@
 @extends('templates/main',
-    [
-        'titulo'=>"Sistema Nutricional",
-        'cabecalho' => 'Lista de Pacientes',
-        'rota' => 'paciente.create',
-        'relatorio' => 'report.paciente',
-        'class' => App\Models\Paciente::class,
-    ]
-)
+[
+    'titulo'=>"Sistema Nutricional",
+    'cabecalho' => 'Lista de Pacientes',
+    'rota' => 'paciente.create',
+    'relatorio' => 'report.paciente',
+    'class' => App\Models\Paciente::class,
+])
 @section('conteudo')
 
-    <table class="table align-middle caption-top table-striped">
+<style>
+:root{
+    --green: #41d97b;
+    --green-strong: #2fbe66;
+    --green-light: #7fffc0;
+    --danger: #ff5c5c;
+}
+
+/* FUNDO */
+body {
+    background: linear-gradient(135deg, #b2ffd6 0%, #4ccf8a 50%, #239864 100%);
+    min-height: 100vh;
+    padding: 22px;
+    overflow: hidden;
+    color: #fff;
+}
+
+/* PARTICULAS NUTRICIONAIS */
+.nutri {
+    position: absolute;
+    font-size: 26px;
+    opacity: 0.85;
+    animation: floatNutri 14s linear infinite;
+    pointer-events: none;
+    filter: drop-shadow(0 3px 6px rgba(0,0,0,0.25));
+}
+
+@keyframes floatNutri {
+    0% { transform: translateY(110vh) rotate(0deg) scale(0.9); opacity: .25; }
+    40% { opacity: 1; }
+    100% { transform: translateY(-20vh) rotate(360deg) scale(1.2); opacity: 0; }
+}
+
+/* CARD GLASS */
+.table-wrapper {
+    margin-top: 18px;
+    background: rgba(255,255,255,0.16);
+    backdrop-filter: blur(14px);
+    padding: 22px;
+    border-radius: 16px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.22);
+     overflow-x: auto;
+}
+
+/* TABELA */
+table.modern-table {
+    width: 100%;
+    max-width: 100%; /* GARANTE QUE NÃO ULTRAPASSE O CARD */
+    border-radius: 12px;
+    overflow: hidden;
+    border-collapse: separate;
+}
+
+table.modern-table thead tr {
+    background: linear-gradient(90deg, var(--green), var(--green-light));
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+table.modern-table tbody tr {
+    background: rgba(255,255,255,0.18);
+    transition: .28s ease;
+}
+
+table.modern-table tbody tr:hover {
+    transform: translateY(-4px) scale(1.01);
+    background: rgba(255,255,255,0.34);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.18), 0 0 12px rgba(65,217,123,0.18) inset;
+}
+
+td, th {
+    padding: 14px 18px !important;
+}
+
+/* BOTÕES */
+.btn-edit {
+    border: 2px solid var(--green-light);
+    color: var(--green-light);
+    background: transparent;
+    border-radius: 28px;
+    padding: 6px 14px;
+    font-weight: 700;
+    transition: .2s;
+}
+
+.btn-edit:hover { background: var(--green); color: #fff; }
+
+.btn-delete {
+    border: 2px solid var(--danger);
+    color: var(--danger);
+    background: transparent;
+    border-radius: 28px;
+    padding: 6px 14px;
+    font-weight: 700;
+    transition: .2s;
+}
+
+.btn-delete:hover { background: var(--danger); color: #fff; }
+</style>
+
+{{-- PARTICULAS --}}
+@php
+$icons = ['🥑','🍎','🍋','🥕','🍃','🍉','🥦','🍇','🍓'];
+$quantidade = 22;
+@endphp
+@for ($i = 0; $i < $quantidade; $i++)
+    @php
+        $emoji = $icons[array_rand($icons)];
+        $left = rand(2, 95);
+        $delay = -($i * 0.8);
+        $size = rand(22, 34);
+    @endphp
+    <div class="nutri" style="left: {{ $left }}%; font-size: {{ $size }}px; animation-delay: {{ $delay }}s;">
+        {{ $emoji }}
+    </div>
+@endfor
+
+{{-- CARD PRINCIPAL --}}
+<div class="table-wrapper">
+    <table class="modern-table table align-middle">
         <thead>
-            <th class="text-secondary">NOME</th>
-            <th class="d-none d-md-table-cell text-secondary">DIETA</th>
-            <th class="d-none d-md-table-cell text-secondary">EMAIL</th>
-            <th class="d-none d-md-table-cell text-secondary">TELEFONE</th>
-            <th class="d-none d-md-table-cell text-secondary">ALTURA</th>
-            <th class="d-none d-md-table-cell text-secondary">IDADE</th>
-            <th class="d-none d-md-table-cell text-secondary">PESO ATUAL</th>
-            <th class="text-secondary">AÇÕES</th>
+            <tr>
+                <th>NOME</th>
+                <th class="d-none d-md-table-cell">DIETA</th>
+                <th class="d-none d-md-table-cell">EMAIL</th>
+                <th class="d-none d-md-table-cell">TELEFONE</th>
+                <th class="d-none d-md-table-cell">ALTURA</th>
+                <th class="d-none d-md-table-cell">IDADE</th>
+                <th class="d-none d-md-table-cell">PESO </th>
+                <th>AÇÕES</th>
+            </tr>
         </thead>
         <tbody>
             @foreach ($pacientes as $item)
@@ -30,30 +152,15 @@
                     <td class="d-none d-md-table-cell">{{ $item->altura }}</td>
                     <td class="d-none d-md-table-cell">{{ $item->idade }}</td>
                     <td class="d-none d-md-table-cell">{{ $item->peso_atual }}</td>
-                    <td>
-                        <a href="{{ asset('storage/'.$item->foto) }}" target="_blank" class="btn btn-outline-dark">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#000" class="bi bi-person-bounding-box" viewBox="0 0 16 16">
-                                <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5M.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5"/>
-                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
-                            </svg>
-                        </a>
-
+                    <td class="text-nowrap">
+                        <a href="{{ asset('storage/'.$item->foto) }}" target="_blank" class="btn btn-outline-dark me-2">👤</a>
+                        
                         @can('update', $item)
-                            <a href="{{route('paciente.edit', $item->id)}}" class="btn btn-outline-success">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#5cb85c" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>
-                                    <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
-                                </svg>
-                            </a>
+                            <a href="{{route('paciente.edit', $item->id)}}" class="btn btn-edit me-2">✏️ Editar</a>
                         @endcan
-
+                        
                         @can('delete', $item)
-                            <a nohref style="cursor:pointer" onclick="showRemoveModal('{{ $item->id }}', '{{ $item->nome }} - {{ $item->dieta->nome }}')" class="btn btn-outline-danger">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#d9534f" class="bi bi-trash-fill" viewBox="0 0 16 16">
-                                    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
-                                </svg>
-                            </a>
-
+                            <a nohref style="cursor:pointer" onclick="showRemoveModal('{{ $item->id }}', '{{ $item->nome }} - {{ $item->dieta->nome }}')" class="btn btn-delete">🗑️ Excluir</a>
                             <form action="{{route('paciente.destroy', $item->id)}}" method="POST" id="form_{{$item->id}}">
                                 @csrf
                                 @method('delete')
@@ -64,5 +171,6 @@
             @endforeach
         </tbody>
     </table>
+</div>
 
 @endsection

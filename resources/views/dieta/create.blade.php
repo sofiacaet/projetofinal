@@ -1,26 +1,157 @@
 @extends('templates/main',
-    [
-        'titulo'=>"Sistema Nutricional",
-        'cabecalho' => 'Nova Dieta',
-        'rota' => '',
-        'relatorio' => '',
-    ]
-)
+[
+    'titulo'=>"Sistema Nutricional",
+    'cabecalho' => 'Nova Dieta',
+    'rota' => '',
+    'relatorio' => '',
+])
 
 @section('conteudo')
+
+<style>
+:root{
+    --green: #41d97b;
+    --green-strong: #2fbe66;
+    --green-light: #7fffc0;
+    --danger: #ff5c5c;
+}
+
+/* FUNDO IGUAL AO EDIT */
+body {
+    background: linear-gradient(135deg, #b2ffd6 0%, #4ccf8a 50%, #239864 100%);
+    min-height: 100vh;
+    padding: 22px;
+    overflow: hidden;
+    color: #fff;
+}
+
+/* PARTÍCULAS, IGUAL AO EDIT */
+.nutri {
+    position: absolute;
+    font-size: 26px;
+    opacity: 0.85;
+    animation: floatNutri 14s linear infinite;
+    pointer-events: none;
+    filter: drop-shadow(0 3px 6px rgba(0,0,0,0.25));
+}
+
+@keyframes floatNutri {
+    0% { transform: translateY(110vh) rotate(0deg) scale(0.9); opacity: .2; }
+    40% { opacity: 1; }
+    100% { transform: translateY(-20vh) rotate(360deg) scale(1.3); opacity: 0; }
+}
+
+/* CARD IGUAL AO EDIT */
+.form-card {
+    background: rgba(255,255,255,0.16);
+    backdrop-filter: blur(14px);
+    padding: 28px;
+    border-radius: 18px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.22);
+    margin-top: 18px;
+}
+
+/* INPUTS IGUAIS AO EDIT */
+
+.form-floating > .form-control {
+    background: rgba(255, 255, 255, 0.90) !important;
+    border: 2px solid transparent;
+    color: #333;
+    border-radius: 12px !important;
+    transition: .25s;
+    font-weight: 600;
+}
+
+.form-floating .form-control::placeholder {
+    color: #666 !important;
+}
+
+.form-floating > .form-control:focus {
+    border-color: var(--green-light);
+    background: rgba(255, 255, 255, 1) !important;
+    box-shadow: 0 0 12px rgba(65, 217, 123, 0.35);
+    color: #222;
+}
+
+/* LABEL IGUAL AO EDIT */
+.form-floating label {
+    color: #0a6c43 !important;
+    font-weight: 700;
+    text-shadow: 0 0 2px rgba(255,255,255,0.4);
+}
+
+/* BOTÕES IGUAIS AO EDIT */
+.btn-custom-back {
+    border: 2px solid #e7eee9;
+    color: #fff;
+    border-radius: 28px;
+    padding: 8px 20px;
+    transition: .2s;
+    background: rgba(255,255,255,0.10);
+}
+
+.btn-custom-back:hover {
+    background: rgba(255,255,255,0.30);
+}
+
+.btn-custom-confirm {
+    border: 2px solid var(--green-light);
+    background: var(--green);
+    border-radius: 28px;
+    padding: 8px 22px;
+    color: #fff;
+    font-weight: 700;
+    transition: .2s;
+    box-shadow: 0 0 10px rgba(65,217,123,0.28);
+}
+
+.btn-custom-confirm:hover {
+    background: var(--green-strong);
+    box-shadow: 0 0 18px rgba(65,217,123,0.45);
+}
+
+</style>
+
+
+{{-- PARTICULAS EXATAMENTE IGUAIS AO EDIT --}}
+@php
+$icons = ['🥑','🍎','🍋','🥕','🍃','🍉','🥦','🍇','🍓'];
+$quantidade = 18;
+@endphp
+
+@for ($i = 0; $i < $quantidade; $i++)
+    @php
+        $emoji = $icons[array_rand($icons)];
+        $left = rand(2, 95);
+        $delay = -($i * 0.7);
+        $size = rand(20, 34);
+    @endphp
+
+    <div class="nutri" style="
+        left: {{ $left }}%;
+        font-size: {{ $size }}px;
+        animation-delay: {{ $delay }}s;
+    ">
+        {{ $emoji }}
+    </div>
+@endfor
+
+
+
+<div class="form-card">
 
 <form action="{{route('dieta.store')}}" method="POST">
     @csrf
 
     <div class="row">
         <div class="col">
-            <div class="form-floating mb-3">
+            <div class="form-floating mb-4">
                 <input
                     type="text"
                     class="form-control"
                     name="nome"
                     placeholder="Nome da Dieta"
-                    value="{{old('nome')}}"
+                    value="{{ old('nome') }}"
                 />
                 <label for="nome">Nome da Dieta</label>
             </div>
@@ -29,37 +160,33 @@
 
     <div class="row">
         <div class="col">
-            <div class="form-floating mb-3">
+            <div class="form-floating mb-4">
                 <input
                     type="text"
                     class="form-control"
                     name="objetivo"
                     placeholder="Objetivo"
-                    value="{{old('objetivo')}}"
+                    value="{{ old('objetivo') }}"
                 />
                 <label for="objetivo">Objetivo</label>
             </div>
         </div>
     </div>
 
-    <div class="row mb-5">
-        <div class="col">
-            <a href="{{route('dieta.index')}}" class="btn btn-secondary btn-block align-content-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
-                    <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z"/>
-                </svg>
-                &nbsp; Voltar
+    <div class="row mt-4">
+        <div class="col d-flex gap-3">
+            <a href="{{route('dieta.index')}}" class="btn btn-custom-back">
+                ⬅️ Voltar
             </a>
 
-            <button type="submit" class="btn btn-success btn-block align-content-center">
-                Confirmar &nbsp;
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                </svg>
+            <button type="submit" class="btn btn-custom-confirm ms-auto">
+                ✔️ Confirmar
             </button>
         </div>
     </div>
 
 </form>
+
+</div>
 
 @endsection

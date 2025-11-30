@@ -1,50 +1,176 @@
 @extends('templates/main',
-    [
-        'titulo'=>"Sistema Nutricional",
-        'cabecalho' => 'Lista de Dietas',
-        'rota' => 'dieta.create',
-        'relatorio' => 'report.dieta',
-         'class' => App\Models\Dieta::class,
-    ]
-)
+[
+    'titulo'=>"Sistema Nutricional",
+    'cabecalho' => 'Lista de Dietas',
+    'rota' => 'dieta.create',
+    'relatorio' => 'report.dieta',
+    'class' => App\Models\Dieta::class,
+])
 
 @section('conteudo')
 
-<table class="table align-middle caption-top table-striped">
-    <thead>
-        <th class="text-secondary">NOME</th>
-        <th class="d-none d-md-table-cell text-secondary">OBJETIVO</th>
-        <th class="text-secondary">AÇÕES</th>
-    </thead>
+<style>
+:root{
+    --green: #41d97b;
+    --green-strong: #2fbe66;
+    --green-light: #7fffc0;
+    --danger: #ff5c5c;
+}
 
-    <tbody>
-        @foreach ($dietas as $item)
+/* FUNDO */
+body {
+    background: linear-gradient(135deg, #b2ffd6 0%, #4ccf8a 50%, #239864 100%);
+    min-height: 100vh;
+    padding: 22px;
+    overflow: hidden;
+    color: #fff;
+}
+
+/* PARTICULAS NUTRICIONAIS */
+.nutri {
+    position: absolute;
+    font-size: 26px;
+    opacity: 0.85;
+    animation: floatNutri 14s linear infinite;
+    pointer-events: none;
+    filter: drop-shadow(0 3px 6px rgba(0,0,0,0.25));
+}
+
+/* animação geral */
+@keyframes floatNutri {
+    0% { transform: translateY(110vh) rotate(0deg) scale(0.9); opacity: .25; }
+    40% { opacity: 1; }
+    100% { transform: translateY(-20vh) rotate(360deg) scale(1.2); opacity: 0; }
+}
+
+/* CARD GLASS */
+.table-wrapper {
+    margin-top: 18px;
+    background: rgba(255,255,255,0.16);
+    backdrop-filter: blur(14px);
+    padding: 22px;
+    border-radius: 16px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.22);
+}
+
+/* TABELA */
+table.modern-table {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    border-collapse: separate;
+}
+
+table.modern-table thead tr {
+    background: linear-gradient(90deg, var(--green), var(--green-light));
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+table.modern-table tbody tr {
+    background: rgba(255,255,255,0.18);
+    transition: .28s ease;
+}
+
+table.modern-table tbody tr:hover {
+    transform: translateY(-4px) scale(1.01);
+    background: rgba(255,255,255,0.34);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.18), 0 0 12px rgba(65,217,123,0.18) inset;
+}
+
+td, th {
+    padding: 14px 18px !important;
+}
+
+/* BOTÕES */
+.btn-edit {
+    border: 2px solid var(--green-light);
+    color: var(--green-light);
+    background: transparent;
+    border-radius: 28px;
+    padding: 6px 14px;
+    font-weight: 700;
+    transition: .2s;
+}
+
+.btn-edit:hover { background: var(--green); color: #fff; }
+
+.btn-delete {
+    border: 2px solid var(--danger);
+    color: var(--danger);
+    background: transparent;
+    border-radius: 28px;
+    padding: 6px 14px;
+    font-weight: 700;
+    transition: .2s;
+}
+
+.btn-delete:hover { background: var(--danger); color: #fff; }
+
+</style>
+
+{{-- ITENS NUTRICIONAIS FLUTUANDO --}}
+@php
+$icons = ['🥑','🍎','🍋','🥕','🍃','🍉','🥦','🍇','🍓'];
+$quantidade = 22;
+@endphp
+
+@for ($i = 0; $i < $quantidade; $i++)
+    @php
+        $emoji = $icons[array_rand($icons)];
+        $left = rand(2, 95);
+        $delay = -($i * 0.8);
+        $size = rand(22, 34);
+    @endphp
+
+    <div class="nutri" style="
+        left: {{ $left }}%;
+        font-size: {{ $size }}px;
+        animation-delay: {{ $delay }}s;
+    ">
+        {{ $emoji }}
+    </div>
+@endfor
+
+
+{{-- CARD PRINCIPAL --}}
+<div class="table-wrapper">
+
+    <table class="modern-table table align-middle">
+        <thead>
             <tr>
-                <td>{{ $item->nome }}</td>
-                <td class="d-none d-md-table-cell">{{ $item->objetivo }}</td>
-
-                <td>
-                    <a href="{{route('dieta.edit', $item->id)}}" class="btn btn-outline-success">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#5cb85c" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>
-                            <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
-                        </svg>
-                    </a>
-
-                    <a nohref style="cursor:pointer" onclick="showRemoveModal('{{ $item->id }}', '{{ $item->nome }}')" class="btn btn-outline-danger">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#d9534f" class="bi bi-trash-fill" viewBox="0 0 16 16">
-                            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
-                        </svg>
-                    </a>
-                </td>
-
-                <form action="{{route('dieta.destroy', $item->id)}}" method="POST" id="form_{{$item->id}}">
-                    @csrf
-                    @method('delete')
-                </form>
+                <th>NOME</th>
+                <th class="d-none d-md-table-cell">OBJETIVO</th>
+                <th>AÇÕES</th>
             </tr>
-        @endforeach
-    </tbody>
-</table>
+        </thead>
+
+        <tbody>
+            @foreach ($dietas as $item)
+                <tr>
+                    <td>{{ $item->nome }}</td>
+                    <td class="d-none d-md-table-cell">{{ $item->objetivo }}</td>
+
+                    <td class="text-nowrap">
+                        <a href="{{ route('dieta.edit', $item->id) }}"
+                           class="btn btn-sm btn-edit me-2">✏️ Editar</a>
+
+                        <a nohref onclick="showRemoveModal('{{ $item->id }}', '{{ $item->nome }}')"
+                           class="btn btn-sm btn-delete">🗑️ Excluir</a>
+                    </td>
+
+                    <form action="{{ route('dieta.destroy', $item->id) }}" method="POST" id="form_{{ $item->id }}">
+                        @csrf
+                        @method('delete')
+                    </form>
+                </tr>
+            @endforeach
+        </tbody>
+
+    </table>
+
+</div>
 
 @endsection
