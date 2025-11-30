@@ -127,7 +127,7 @@
         <tbody>
             <tr>
                 <td style="width: 75px; text-align: left;">
-                    <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/assets/img/logo_ifpr.png'))) }}" width="78" height="78" style="border-radius: 25%;">
+                    <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/assets/img/logo.png'))) }}" width="90" height="90" style="border-radius: 25%;">
                 </td>
                 <td style="width: 1fr; text-align: center;">
                     <span style="font-size: 18px;">GOVERNO FEDERAL DO BRASIL</span>
@@ -136,7 +136,7 @@
                     <div style="font-size: 18px; font-weight: bold;">PARANAGUÁ</div>
                 </td>
                 <td style="width: 75px; text-align: right;">
-                    <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/assets/img/logo_ifpr.png'))) }}" width="90" height="90" style="border-radius: 25%;">
+                    <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/assets/img/logo.png'))) }}" width="90" height="90" style="border-radius: 25%;">
                 </td>
             </tr>
         </tbody>

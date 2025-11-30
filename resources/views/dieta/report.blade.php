@@ -57,7 +57,7 @@
     <table style="width: 100%;">
         <tr>
             <td style="width: 75px;">
-                <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/assets/img/logo_ifpr.png'))) }}" width="78" height="78">
+                <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/assets/img/logo.png'))) }}" width="90" height="90">
             </td>
             <td style="text-align: center;">
                 <div style="font-size: 18px;">GOVERNO FEDERAL DO BRASIL</div>
@@ -66,7 +66,7 @@
                 <div style="font-size: 18px; font-weight: bold;">PARANAGUÁ</div>
             </td>
             <td style="width: 75px;">
-                <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/assets/img/logo_ifpr.png'))) }}" width="90" height="90">
+                <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/assets/img/logo.png'))) }}" width="90" height="90">
             </td>
         </tr>
     </table>
