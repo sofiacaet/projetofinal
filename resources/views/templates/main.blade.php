@@ -22,7 +22,7 @@
         <div class="container-fluid">
             <a href="{{ route('home') }}" class="navbar-brand">
                 <img src="{{ asset('assets/img/logo_ifpr.png') }}" style="border-radius: 25%;" width="56" height="56">
-                <span class="ms-2 fs-4 fw-bold">Sistema Aula</span>
+                <span class="ms-2 fs-4 fw-bold">Sistema Nutricional</span>
             </a>
             <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#itens">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-menu-button-wide" viewBox="0 0 16 16">
@@ -33,26 +33,26 @@
             <div class="collapse navbar-collapse" id="itens">
                 <ul class="navbar-nav ms-auto">
 
-                    @can('viewAny', App\Models\Aluno::class)
+                    @can('viewAny', App\Models\Paciente::class)
                         <li class="nav-item me-2">
-                            <a href="{{ route('aluno.index') }}" class="nav-link">
+                            <a href="{{ route('paciente.index') }}" class="nav-link">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#FFF" class="bi bi-mortarboard-fill" viewBox="0 0 16 16">
                                     <path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917z"/>
                                     <path d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466z"/>
                                 </svg>
-                                <span class="ps-1 text-white">Alunos</span>
+                                <span class="ps-1 text-white">Pacientes</span>
                             </a>
                         </li>
                     @endcan
 
-                    @can('viewAny', App\Models\Curso::class)
+                    @can('viewAny', App\Models\Dieta::class)
                         <li class="nav-item me-2">
-                            <a href="{{ route('curso.index') }}" class="nav-link">
+                            <a href="{{ route('dieta.index') }}" class="nav-link">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#FFF" class="bi bi-easel2-fill" viewBox="0 0 16 16">
                                     <path d="M8.447.276a.5.5 0 0 0-.894 0L7.19 1H2.5A1.5 1.5 0 0 0 1 2.5V10h14V2.5A1.5 1.5 0 0 0 13.5 1H8.809z"/>
                                     <path fill-rule="evenodd" d="M.5 11a.5.5 0 0 0 0 1h2.86l-.845 3.379a.5.5 0 0 0 .97.242L3.89 14h8.22l.405 1.621a.5.5 0 0 0 .97-.242L12.64 12h2.86a.5.5 0 0 0 0-1zm3.64 2 .25-1h7.22l.25 1z"/>
                                 </svg>
-                                <span class="ps-1 text-white">Cursos</span>
+                                <span class="ps-1 text-white">Dietas</span>
                             </a>
                         </li>
                     @endcan

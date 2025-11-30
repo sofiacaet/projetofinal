@@ -4,13 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Aluno;
+use App\Models\Paciente;
 
 
 use \Illuminate\Database\Eloquent\SoftDeletes;
-class Curso extends Model {
+class Dieta extends Model {
 use SoftDeletes;
-public function aluno() {
-return $this->hasMany('\App\Models\Aluno');
+public function paciente() {
+return $this->hasMany('\App\Models\Paciente');
 }
 }

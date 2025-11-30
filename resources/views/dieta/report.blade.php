@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Relatório de Cursos - Sistema Aula </title>
+    <title>Relatório de Dietas - Sistema Nutricional </title>
     <style>
         body {
             font-family: Arial, Helvetica, sans-serif;
@@ -50,7 +50,7 @@
 <body>
 
     <div class="texto-marca-dagua"> IFPR - PARANAGUÁ </div>
-    <div class="texto-restrito-cima"> DOCUMENTO GERADO PELO SISTEMA CURSO </div>
+    <div class="texto-restrito-cima"> DOCUMENTO GERADO PELO SISTEMA DIETA </div>
 
     <hr>
 
@@ -61,7 +61,7 @@
             </td>
             <td style="text-align: center;">
                 <div style="font-size: 18px;">GOVERNO FEDERAL DO BRASIL</div>
-                <div style="font-size: 18px;">MINISTÉRIO DA EDUCAÇÃO</div>
+                <div style="font-size: 18px;">MINISTÉRIO DA SAÚDE</div>
                 <div style="font-size: 18px; font-weight: bold;">INSTITUTO FEDERAL</div>
                 <div style="font-size: 18px; font-weight: bold;">PARANAGUÁ</div>
             </td>
@@ -73,26 +73,26 @@
 
     <hr>
 
-    <h3 style="text-align:center; margin-top:10px;">Relatório de Cursos</h3>
+    <h3 style="text-align:center; margin-top:10px;">Relatório de Dietas</h3>
 
     <table>
         <thead>
             <tr>
-                <th>Nome do Curso</th>
+                <th>Nome da Dieta</th>
                 <th>Duracao</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($cursos as $curso)
+            @foreach($dietas as $dieta)
                 <tr>
-                    <td>{{ $curso->nome }}</td>
-                    <td>{{ $curso->duracao }}</td>
+                    <td>{{ $dieta->nome }}</td>
+                    <td>{{ $dieta->duracao }}</td>
                 </tr>
             @endforeach
         </tbody>
     </table>
 
-    <div class="texto-restrito-baixo"> DOCUMENTO GERADO PELO SISTEMA CURSO </div>
+    <div class="texto-restrito-baixo"> DOCUMENTO GERADO PELO SISTEMA DIETA </div>
 
 </body>
 </html>

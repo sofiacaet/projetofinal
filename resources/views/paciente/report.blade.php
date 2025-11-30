@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Relatório de Alunos - Sistema Aula </title>
+    <title>Relatório de Pacientes - Sistema Nutricional </title>
     <style>
 
         body {
@@ -121,7 +121,7 @@
 </head>
 <body>
     <div class="texto-marca-dagua"> IFPR - PARANAGUÁ </div>
-    <div class="texto-restrito-cima"> DOCUMENTO GERADO PELO SISTEMA AULA </div>
+    <div class="texto-restrito-cima"> DOCUMENTO GERADO PELO SISTEMA NUTRICIONAL </div>
     <hr>
     <table style="margin: 0px auto; width: 100%">
         <tbody>
@@ -131,7 +131,7 @@
                 </td>
                 <td style="width: 1fr; text-align: center;">
                     <span style="font-size: 18px;">GOVERNO FEDERAL DO BRASIL</span>
-                    <div style="font-size: 18px;">MINISTÉRIO DA EDUCAÇÃO</div>
+                    <div style="font-size: 18px;">MINISTÉRIO DA SAÚDE</div>
                     <div style="font-size: 18px; font-weight: bold;">INSTITUTO FEDERAL</div>
                     <div style="font-size: 18px; font-weight: bold;">PARANAGUÁ</div>
                 </td>
@@ -146,25 +146,25 @@
     </div>
     <hr>
 
-    <div class="texto-restrito-baixo" style="position: absolute; bottom: 1px;"> DOCUMENTO GERADO PELO SISTEMA AULA </div>
+    <div class="texto-restrito-baixo" style="position: absolute; bottom: 1px;"> DOCUMENTO GERADO PELO SISTEMA NUTRICIONAL </div>
 
     <div class="identification-header">IDENTIFICAÇÃO</div>
-    @foreach($alunos as $aluno)
+    @foreach($pacientes as $paciente)
         <table class="info-table identification-section">
             <tbody>
                 <tr>
                     <td class="photo-cell" >
-                        @if($aluno->foto)
-                            <img src="{{ public_path('storage/' . $aluno->foto) }}" style="width: 120px; height: auto;">
+                        @if($paciente->foto)
+                            <img src="{{ public_path('storage/' . $paciente->foto) }}" style="width: 120px; height: auto;">
                         @else
                             FOTO
                         @endif
                     </td>
                     <td>
                         <table class="inner-table">
-                            <tr><td class="label table-label">NOME:</td><td style="width: 305px;">{{ $aluno->nome }}</td></tr>
-                            <tr><td class="label">CURSO:</td><td>{{ $aluno->curso->nome }}</td></tr>
-                            <tr><td class="label">ANO:</td><td>{{ $aluno->ano }}</td></tr>
+                            <tr><td class="label table-label">NOME:</td><td style="width: 305px;">{{ $paciente->nome }}</td></tr>
+                            <tr><td class="label">CURSO:</td><td>{{ $paciente->dieta->nome }}</td></tr>
+                            <tr><td class="label">ANO:</td><td>{{ $paciente->ano }}</td></tr>
                             <tr><td class="label">NATURALIDADE:</td><td>  </td></tr>
                             <tr><td class="label">MÃE:</td><td>  </td></tr>
                             <tr><td class="label">PAI:</td><td>  </td></tr>

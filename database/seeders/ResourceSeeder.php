@@ -15,17 +15,17 @@ class ResourceSeeder extends Seeder
     {
         $data = [
             // CURSO
-            ["name" => "curso.index"],      // 1
-            ["name" => "curso.create"],     // 2
-            ["name" => "curso.show"],       // 3
-            ["name" => "curso.edit"],       // 4
-            ["name" => "curso.delete"],     // 5
+            ["name" => "dieta.index"],      // 1
+            ["name" => "dieta.create"],     // 2
+            ["name" => "dieta.show"],       // 3
+            ["name" => "dieta.edit"],       // 4
+            ["name" => "dieta.delete"],     // 5
             // ALUNO
-            ["name" => "aluno.index"],      // 6
-            ["name" => "aluno.create"],     // 7
-            ["name" => "aluno.show"],       // 8
-            ["name" => "aluno.edit"],       // 9
-            ["name" => "aluno.delete"],     // 10
+            ["name" => "paciente.index"],      // 6
+            ["name" => "paciente.create"],     // 7
+            ["name" => "paciente.show"],       // 8
+            ["name" => "paciente.edit"],       // 9
+            ["name" => "paciente.delete"],     // 10
         ];
         DB::table('resources')->insert($data);
     }

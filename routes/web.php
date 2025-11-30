@@ -2,8 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AlunoController;
-use App\Http\Controllers\CursoController;
+use App\Http\Controllers\PacienteController;
+use App\Http\Controllers\DietaController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -13,12 +13,12 @@ Route::get('/home', function () {
     return view('home');
 })->name('home')->middleware(['auth', 'verified']);
 
-Route::resource('/curso', CursoController::class)->middleware(['auth', 'verified']);
-Route::get('/report/curso', [CursoController::class, 'report'])->name('report.curso')->middleware(['auth', 'verified']);
+Route::resource('/dieta', DietaController::class)->middleware(['auth', 'verified']);
+Route::get('/report/dieta', [DietaController::class, 'report'])->name('report.dieta')->middleware(['auth', 'verified']);
 
 
-Route::resource('/aluno', AlunoController::class)->middleware(['auth', 'verified']);
-Route::get('/report/aluno', [AlunoController::class, 'report'])->name('report.aluno')->middleware(['auth', 'verified']);
+Route::resource('/paciente', PacienteController::class)->middleware(['auth', 'verified']);
+Route::get('/report/paciente', [PacienteController::class, 'report'])->name('report.paciente')->middleware(['auth', 'verified']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -2,27 +2,27 @@
 
 namespace App\Policies;
 
-use App\Models\Aluno;
+use App\Models\Dieta;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 use App\Http\Controllers\PermissionController;
 
-class AlunoPolicy
+class DietaPolicy
 {
     /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool
     {
-        return PermissionController::isAuthorized('aluno.index');
+        return PermissionController::isAuthorized('dieta.index');
     }
 
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Aluno $aluno): bool
+    public function view(User $user, Dieta $dieta): bool
     {
-        return PermissionController::isAuthorized('aluno.show');
+        return PermissionController::isAuthorized('dieta.show');
     }
 
     /**
@@ -30,38 +30,38 @@ class AlunoPolicy
      */
     public function create(User $user): bool
     {
-        return PermissionController::isAuthorized('aluno.create');
+        return PermissionController::isAuthorized('dieta.create');
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Aluno $aluno): bool
+    public function update(User $user, Dieta $dieta): bool
     {
-        return PermissionController::isAuthorized('aluno.edit');
+        return PermissionController::isAuthorized('dieta.edit');
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Aluno $aluno): bool
+    public function delete(User $user, Dieta $dieta): bool
     {
-        return PermissionController::isAuthorized('aluno.delete');
+        return PermissionController::isAuthorized('dieta.delete');
     }
 
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Aluno $aluno): bool
+    public function restore(User $user, Dieta $dieta): bool
     {
-        return PermissionController::isAuthorized('aluno.delete');
+        return PermissionController::isAuthorized('dieta.delete');
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Aluno $aluno): bool
+    public function forceDelete(User $user, Dieta $dieta): bool
     {
-        return PermissionController::isAuthorized('aluno.delete');
+        return PermissionController::isAuthorized('dieta.delete');
     }
 }
