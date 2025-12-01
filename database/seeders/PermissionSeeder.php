@@ -22,9 +22,9 @@ class PermissionSeeder extends Seeder
             ["role_id" => 1, "resource_id" => 5, "permission" => 0],
             // PROFESSOR - ALUNO
             ["role_id" => 1, "resource_id" => 6, "permission" => 1],
-            ["role_id" => 1, "resource_id" => 7, "permission" => 1],
+            ["role_id" => 1, "resource_id" => 7, "permission" => 0],
             ["role_id" => 1, "resource_id" => 8, "permission" => 1],
-            ["role_id" => 1, "resource_id" => 9, "permission" => 1],
+            ["role_id" => 1, "resource_id" => 9, "permission" => 0],
             ["role_id" => 1, "resource_id" => 10, "permission" => 0],
             //  COORDENADOR - CURSO
             ["role_id" => 2, "resource_id" => 1, "permission" => 1],
