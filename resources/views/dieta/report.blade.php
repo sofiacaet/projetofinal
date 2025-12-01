@@ -49,7 +49,7 @@
 </head>
 <body>
 
-    <div class="texto-marca-dagua"> IFPR - PARANAGUÁ </div>
+    <div class="texto-marca-dagua"> NUTRITIONIST - PR </div>
     <div class="texto-restrito-cima"> DOCUMENTO GERADO PELO SISTEMA NUTRICIONAL </div>
 
     <hr>
@@ -62,8 +62,8 @@
             <td style="text-align: center;">
                 <div style="font-size: 18px;">GOVERNO FEDERAL DO BRASIL</div>
                 <div style="font-size: 18px;">MINISTÉRIO DA SAÚDE</div>
-                <div style="font-size: 18px; font-weight: bold;">INSTITUTO FEDERAL</div>
-                <div style="font-size: 18px; font-weight: bold;">PARANAGUÁ</div>
+                <div style="font-size: 18px; font-weight: bold;">INSTITUTO NUTRITIONIST</div>
+                <div style="font-size: 18px; font-weight: bold;">PARANÁ</div>
             </td>
             <td style="width: 75px;">
                 <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/assets/img/logo.png'))) }}" width="90" height="90">

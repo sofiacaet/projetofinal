@@ -11,6 +11,16 @@
             margin: 1cm 0.5cm;
             color: #000;
         }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 6px;
+        }
+        th { text-transform: uppercase; background-color: #eee; }
         .texto-marca-dagua {
             position: absolute;
             top: 50%;
@@ -120,23 +130,23 @@
     </style>
 </head>
 <body>
-    <div class="texto-marca-dagua"> IFPR - PARANAGUÁ </div>
+    <div class="texto-marca-dagua"> NUTRITIONIST - PR</div>
     <div class="texto-restrito-cima"> DOCUMENTO GERADO PELO SISTEMA NUTRICIONAL </div>
     <hr>
-    <table style="margin: 0px auto; width: 100%">
+    <table style="margin: 0px auto; width: 100%; ">
         <tbody>
             <tr>
                 <td style="width: 75px; text-align: left;">
-                    <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/assets/img/logo.png'))) }}" width="90" height="90" style="border-radius: 25%;">
+                    <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/assets/img/logo.png'))) }}" width="90" height="90" >
                 </td>
                 <td style="width: 1fr; text-align: center;">
                     <span style="font-size: 18px;">GOVERNO FEDERAL DO BRASIL</span>
                     <div style="font-size: 18px;">MINISTÉRIO DA SAÚDE</div>
-                    <div style="font-size: 18px; font-weight: bold;">INSTITUTO FEDERAL</div>
-                    <div style="font-size: 18px; font-weight: bold;">PARANAGUÁ</div>
+                    <div style="font-size: 18px; font-weight: bold;">INSTITUTO NUTRITIONIST</div>
+                    <div style="font-size: 18px; font-weight: bold;">PARANÁ</div>
                 </td>
                 <td style="width: 75px; text-align: right;">
-                    <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/assets/img/logo.png'))) }}" width="90" height="90" style="border-radius: 25%;">
+                    <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/assets/img/logo.png'))) }}" width="90" height="90" >
                 </td>
             </tr>
         </tbody>
@@ -145,6 +155,7 @@
         <span style="font-size: 18px; font-weight: bold; font-style: italic;"></span>
     </div>
     <hr>
+     <h3 style="text-align:center; margin-top:10px;">Relatório de Pacientes</h3>
 
     <div class="texto-restrito-baixo" style="position: absolute; bottom: 1px;"> DOCUMENTO GERADO PELO SISTEMA NUTRICIONAL </div>
 

@@ -16,8 +16,17 @@ class PacienteController extends Controller
     public function index()
     {
         Gate::authorize('viewAny', Paciente::class);
-        $pacientes = Paciente::all();
-        // dd($alunos);
+
+        // COORDENADOR = role_id 2 → vê todos
+        if (auth()->user()->role_id == 2) {
+            $pacientes = Paciente::all();
+        } 
+        // PROFESSOR = role_id 1 → vê somente o paciente com o mesmo email do login
+        else {
+            $email = auth()->user()->email;
+            $pacientes = Paciente::where('email', $email)->get();
+        }
+
         return view('paciente.index', compact('pacientes'));
     }
 
@@ -134,12 +143,24 @@ class PacienteController extends Controller
     }
 
     public function report() {
-        $pacientes = Paciente::with(['dieta'])->get();
-        // Gera um PDF a partir de uma view Blade
-        $pdf = Pdf::loadView('paciente.report', ['pacientes' => $pacientes]);
-        // Exibe o PDF no navegador
-        return $pdf->stream('document.pdf');
-        // Ou Faz o download do PDF
-        // return $pdf->download('document.pdf');
+         // COORDENADOR vê todos
+    if (auth()->user()->role_id == 2) {
+        $pacientes = Paciente::with('dieta')->get();
+    } 
+    // PROFESSOR vê somente seu próprio paciente
+    else {
+        $email = auth()->user()->email;
+        $pacientes = Paciente::with('dieta')
+            ->where('email', $email)
+            ->get();
+    }
+
+    $pdf = Pdf::loadView('paciente.report', ['pacientes' => $pacientes]);
+
+    return $pdf->stream('document.pdf');
+
+
+
+        
 }
 }
